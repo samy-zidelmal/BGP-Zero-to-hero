@@ -6,6 +6,7 @@ puts [open "flash:lab002-01" w+] {
 !
 hostname R3
 !
+no ip domain lookup
 !
 
 interface Loopback0
