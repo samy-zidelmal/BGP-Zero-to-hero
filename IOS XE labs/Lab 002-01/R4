@@ -1,0 +1,16 @@
+tclsh
+puts [open "lab 002-01" w+] {
+
+host R4
+no ip domain lookup
+
+line con 0
+logg syn
+exec-t 0
+
+interface g1
+ip add 10.1.34.4 255.255.255.0
+no shut
+
+
+}
