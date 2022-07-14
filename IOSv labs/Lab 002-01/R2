@@ -28,4 +28,7 @@ end
 exit
 configure replace "flash:lab002-01"
 yes
+yes
+
+exit
 
