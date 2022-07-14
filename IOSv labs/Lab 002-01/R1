@@ -1,16 +1,28 @@
 tclsh
-puts [open "lab 002-01" w+] {
-host R1
-ip route 0.0.0.0 0.0.0.0 10.1.12.2
-no ip domain lookup
+puts [open "flash:lab002-01" w+] {
+!
+! Last configuration change at 12:12:12 UTC Thu Dec 12 1212
+!
+!
+hostname R1
+!
+!
 
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+!
+interface GigabitEthernet0/1
+ ip address 10.1.12.1 255.255.255.0
+!
+!
 line con 0
-logg syn
-exec-t 0
-
-interface g0/1
-ip add 10.1.12.1 255.255.255.0
-no shut
-
-
+ exec-timeout 0 0
+ logging synchronous
+!
+end
+      
 }
+exit
+configure replace "flash:lab002-01"
+yes
+
