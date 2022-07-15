@@ -1,11 +1,12 @@
 tclsh
-puts [open "flash:lab002-01" w+] {
+puts [open "flash:lab002-02" w+] {
 !
 ! Last configuration change at 12:12:12 UTC Thu Dec 12 1212
 !
 !
 hostname R3
 !
+no ip domain lookup
 !
 
 interface Loopback0
@@ -22,10 +23,19 @@ line con 0
  exec-timeout 0 0
  logging synchronous
 !
+router bgp 65003
+ neighbor 10.1.34.4 remote-as 65004
+ neighbor 10.1.34.4 transport connection-mode passive
+ neighbor 10.1.23.2 remote-as 65002
+! 
+
 end
       
 }
 exit
-configure replace "flash:lab002-01"
+configure replace "flash:lab002-02"
 yes
+yes
+
+exit
 
