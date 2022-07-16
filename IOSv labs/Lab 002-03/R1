@@ -1,6 +1,6 @@
 en
 tclsh
-puts [open "flash:lab002-02" w+] {
+puts [open "flash:lab002-01" w+] {
 !
 ! Last configuration change at 12:12:12 UTC Thu Dec 12 1212
 !
@@ -13,24 +13,28 @@ no ip domain lookup
 interface Loopback0
  ip address 1.1.1.1 255.255.255.255
 !
-interface GigabitEthernet1
+interface GigabitEthernet0/1
  ip address 10.1.12.1 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet0/2
+ ip address 10.1.21.1 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
 !
 !
 line con 0
  exec-timeout 0 0
  logging synchronous
 !
-router bgp 65001
- bgp router-id 1.1.1.1
- neighbor 10.1.12.3 remote-as 65002
-! 
 end
-
-
+      
 }
 exit
-configure replace "flash:lab002-02"
+configure replace "flash:lab002-01"
 yes
 yes
 

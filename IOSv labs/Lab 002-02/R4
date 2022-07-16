@@ -1,3 +1,4 @@
+en
 tclsh
 puts [open "flash:lab002-02" w+] {
 !
@@ -21,6 +22,7 @@ line con 0
  logging synchronous
 !
 router bgp 65004
+ bgp router-id 4.4.4.4
  neighbor 10.1.34.3 remote-as 65003
  neighbor 10.1.34.3 transport connection-mode passive
 ! 
