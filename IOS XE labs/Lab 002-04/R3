@@ -1,0 +1,48 @@
+en
+tclsh
+puts [open "flash:lab002-04" w+] {
+!
+! Last configuration change at 12:12:12 UTC Thu Dec 12 1212
+!
+!
+hostname R3
+!
+no ip domain lookup
+!
+ip route 2.2.2.2 255.255.255.255 10.1.23.2
+ip route 4.4.4.0 255.255.255.0 10.1.34.44
+
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.255
+!
+interface GigabitEthernet1
+ ip address 10.1.34.3 255.255.255.0
+!
+interface GigabitEthernet2
+ ip address 10.1.23.3 255.255.255.0
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+!
+router bgp 65003
+ bgp router-id 3.3.3.3
+ neighbor 4.4.4.4 remote-as 65004
+ neighbor 4.4.4.4 disable-connected-check
+ neighbor 4.4.4.4 update-source lo0
+ neighbor 2.2.2.2 remote-as 65002
+ neighbor 2.2.2.2 disable-connected-check
+ neighbor 2.2.2.2 update-source lo0
+! 
+
+end
+      
+}
+exit
+configure replace "flash:lab002-04"
+yes
+yes
+
+exit
+
